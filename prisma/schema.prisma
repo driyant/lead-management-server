@@ -12,3 +12,19 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+enum LeadStatus {
+  NEW           @map("New")
+  ENGAGED       @map("Engaged")
+  PROPOSAL_SENT @map("Proposal Sent")
+  CLOSED_WON    @map("Closed-Won")
+  CLOSED_LOST   @map("Closed-Lost")
+}
+
+model Lead {
+  id        String     @id @default(uuid())
+  name      String
+  email     String     @unique
+  status    LeadStatus @default(NEW)
+  createdAt DateTime   @default(now())
+}
