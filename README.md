@@ -16,3 +16,18 @@ Before you begin, ensure you have the following installed:
 - [Node.js](https://nodejs.org/) (v18 or higher)
 - [pnpm](https://pnpm.io/) (Package manager)
 - A running instance of PostgreSQL (Local or Cloud like Neon/Supabase)
+
+## Production
+
+Set `DATABASE_URL` and `PORT` in the production environment, then generate the
+Prisma client, apply pending migrations, and build the application:
+
+```bash
+pnpm prisma generate
+pnpm prisma migrate deploy
+pnpm run build
+pnpm start
+```
+
+For a Passenger deployment, use `dist/index.js` as the startup file after
+running `pnpm run build`.
