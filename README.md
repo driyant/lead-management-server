@@ -31,3 +31,19 @@ pnpm start
 
 For a Passenger deployment, use `dist/index.js` as the startup file after
 running `pnpm run build`.
+
+## CI/CD deployment
+
+Pushing to `main` runs tests, generates the Prisma client, builds the
+application, then uploads the repository to cPanel over FTP. The generated
+`dist/` directory is uploaded even though it is ignored by Git.
+
+Configure these GitHub Actions secrets:
+
+- `FTP_SERVER`
+- `FTP_USERNAME`
+- `FTP_PASSWORD`
+
+The workflow does not upload `node_modules`; install production dependencies
+on cPanel with `pnpm install --prod --frozen-lockfile` before starting
+`dist/index.js`.
