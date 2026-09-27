@@ -1,5 +1,5 @@
 import { Request, Response, Router } from 'express';
-import LeadController from '../controllers/LeadController';
+import LeadController from '../controllers/LeadController.js';
 
 
 const router = Router();
